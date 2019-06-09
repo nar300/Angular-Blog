@@ -1,0 +1,38 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+   
+      <form #frm="ngForm" (ngSubmit)="onSubmit(frm)">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input ngModel name="title" #title="ngModel" type="text" required class="form-control" id="title"  placeholder="Enter a Title">
+        <div *ngIf="!title.valid && title.touched" class="alert alert-danger">this field is required</div>
+        </div>
+        <div class="form-group">
+          <label for="Description">Description</label>
+          <input ngModel name="description" #description="ngModel" type="text" required class="form-control" id="description"  placeholder="Enter Description">
+        <div *ngIf="!description.valid && description.touched" class="alert alert-danger">this field is required</div>
+        </div>
+
+        <button [disabled]="frm.invalid" type="submit" class="btn btn-primary">Submit </button>
+        </form>
+<div *ngIf="isError" class="alert alert-danger">{{errorMessage}}</div>
+    </div>
+   
+      <div class="col-lg-6 ">
+        <div *ngFor="let item of BlogList" class="card ">
+         
+          <div class="card-body">
+            <h4 class="card-title">{{item.Title}}</h4>
+            <p class="card-text">{{item.Description}}</p>
+            <button (click)="deleteitem(item.id)" class="btn btn-danger">Dlete</button>
+          </div>
+        </div>
+      </div>
+
+
+
+
+  </div>
+</div>
